@@ -16,9 +16,9 @@ public class CountThreadsMain {
         Thread proceso2 = new CountThread(99,199,"Hilo 2");
         Thread proceso3 = new CountThread(200,299, "Hilo 3");
 
-        proceso1.start();
-        proceso2.start();
-        proceso3.start();
+        proceso1.run();
+        proceso2.run();
+        proceso3.run();
 
     }
     

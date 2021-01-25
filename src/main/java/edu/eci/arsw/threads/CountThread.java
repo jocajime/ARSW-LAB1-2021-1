@@ -10,6 +10,7 @@ package edu.eci.arsw.threads;
  * @author hcadavid
  */
 public class CountThread extends Thread {
+
     int A;
     int B;
     String nombre;
