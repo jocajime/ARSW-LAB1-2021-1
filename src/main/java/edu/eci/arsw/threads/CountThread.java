@@ -5,6 +5,10 @@
  */
 package edu.eci.arsw.threads;
 
+import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
+
+import java.util.LinkedList;
+
 /**
  *
  * @author hcadavid
@@ -27,4 +31,5 @@ public class CountThread extends Thread {
             System.out.println(i + " " + nombre);
         }
     }
+
 }

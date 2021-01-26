@@ -1,6 +1,7 @@
-# ARSW-LAB1-2021-1.
+﻿
 ### Escuela Colombiana de Ingeniería
 ### Arquitecturas de Software - ARSW
+### Joel Arturo Carvajal Jimenez
 ## Ejercicio Introducción al paralelismo - Hilos - Caso BlackListSearch
 
 
@@ -15,18 +16,19 @@
 
 **Parte I - Introducción a Hilos en Java**
 
-1. De acuerdo con lo revisado en las lecturas, complete las clases CountThread, para que las mismas definan el ciclo de vida de un hilo que imprima por pantalla los números entre A y B. 
-	1. En el proyecto
+1. De acuerdo con lo revisado en las lecturas, complete las clases CountThread, para que las mismas definan el ciclo de vida de un hilo que imprima por pantalla los números entre A y B.
 2. Complete el método __main__ de la clase CountMainThreads para que:
-	1. Cree 3 hilos de tipo CountThread, asignándole al primero el intervalo [0..99], al segundo [99..199], y al tercero [200..299]. (añadi un nombre al hilo para mejor entendimiento)
+	1. Cree 3 hilos de tipo CountThread, asignándole al primero el intervalo [0..99], al segundo [99..199], y al tercero [200..299].
 	2. Inicie los tres hilos con 'start()'.
 	3. Ejecute y revise la salida por pantalla. 
-		![](img/salidastart.png)
-	4. Cambie el incio con 'start()' por 'run()'. Cómo cambia la salida?, por qué?.
-		![](img/salidarun.png)
-		
-	
-		
+
+	![](img/salidastart.png)
+
+	5. Cambie el incio con 'start()' por 'run()'. Cómo cambia la salida?, por qué?.
+
+	![](img/salidarun.png)
+
+cambia la salida porque al cambiar el inicio por 'run()' es una llamada a un método secuencial esto implica que no se inicia un hilo nuevo simplemente se llama un método en el hilo principal, al usar el inicio con 'start()' se inicia el método run en paralelo donde se crea un hilo "hijo".
 
 **Parte II - Ejercicio Black List Search**
 
@@ -67,28 +69,51 @@ Para 'refactorizar' este código, y hacer que explote la capacidad multi-núcleo
 
 La estrategia de paralelismo antes implementada es ineficiente en ciertos casos, pues la búsqueda se sigue realizando aún cuando los N hilos (en su conjunto) ya hayan encontrado el número mínimo de ocurrencias requeridas para reportar al servidor como malicioso. Cómo se podría modificar la implementación para minimizar el número de consultas en estos casos?, qué elemento nuevo traería esto al problema?
 
+para esto se debería implementar la posibilidad de que en caso que uno de estos hilos encontrar el numero máximo de ocurrencias avisara al hilo padre y con esto parar todos las búsquedas, esto disminuiría el tiempo de ejecución, esto traería el como saber la respuesta de un hilo sin esperar la terminación de los demás hilos.
+
 **Parte III - Evaluación de Desempeño**
 
 A partir de lo anterior, implemente la siguiente secuencia de experimentos para realizar las validación de direcciones IP dispersas (por ejemplo 202.24.34.55), tomando los tiempos de ejecución de los mismos (asegúrese de hacerlos en la misma máquina):
 
 1. Un solo hilo.
-2. Tantos hilos como núcleos de procesamiento (haga que el programa determine esto haciendo uso del [API Runtime](https://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html)).
-3. Tantos hilos como el doble de núcleos de procesamiento.
-4. 50 hilos.
-5. 100 hilos.
+
+![](img/singlethread.png)
+
+3. Tantos hilos como núcleos de procesamiento (haga que el programa determine esto haciendo uso del [API Runtime](https://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html)).
+
+![](img/nucleosdisponibles.png)
+
+4. Tantos hilos como el doble de núcleos de procesamiento.
+
+![](img/doblenucleos.png)
+
+5. 30 hilos.
+
+![](img/30hilos.png)
+
+6. 100 hilos.
+
+![](img/100hilos.png)
 
 Al iniciar el programa ejecute el monitor jVisualVM, y a medida que corran las pruebas, revise y anote el consumo de CPU y de memoria en cada caso. ![](img/jvisualvm.png)
 
 Con lo anterior, y con los tiempos de ejecución dados, haga una gráfica de tiempo de solución vs. número de hilos. Analice y plantee hipótesis con su compañero para las siguientes preguntas (puede tener en cuenta lo reportado por jVisualVM):
 
+![](img/capturagrafica.png)
 
 
 1. Según la [ley de Amdahls](https://www.pugetsystems.com/labs/articles/Estimating-CPU-Performance-using-Amdahls-Law-619/#WhatisAmdahlsLaw?):
 
 	![](img/ahmdahls.png), donde _S(n)_ es el mejoramiento teórico del desempeño, _P_ la fracción paralelizable del algoritmo, y _n_ el número de hilos, a mayor _n_, mayor debería ser dicha mejora. Por qué el mejor desempeño no se logra con los 500 hilos?, cómo se compara este desempeño cuando se usan 200?. 
+	
+la ley de Amdahls denota que La mejora obtenida en el rendimiento por la mejora de uno de los componentes del sistema en este caso un algoritmo está limitada por la fracción de tiempo que se utiliza dicho componente, como podemos ver en la grafica en este caso se ve un aumento significativo en el cambio por ejemplo de 4 a 8 hilos pero es no significativo, casi imperceptible, la mejora de 50 a 100 y lo mismo pasaría de 100 a 200 o de 200 a 500, es decir, este desempeño es prácticamente el mismo. 
 
 2. Cómo se comporta la solución usando tantos hilos de procesamiento como núcleos comparado con el resultado de usar el doble de éste?.
 
+se ve una gran mejora en el rendimiento, en este caso, en 8 hilos se demora la mitad del tiempo que con 4 hilos, es decir, una mejora del doble en el rendimiento.
+
 3. De acuerdo con lo anterior, si para este problema en lugar de 100 hilos en una sola CPU se pudiera usar 1 hilo en cada una de 100 máquinas hipotéticas, la ley de Amdahls se aplicaría mejor?. Si en lugar de esto se usaran c hilos en 100/c máquinas distribuidas (siendo c es el número de núcleos de dichas máquinas), se mejoraría?. Explique su respuesta.
+
+si hay una mejora pues por el funcionamiento de nuestro procesador en este caso al usar 100 hilos en un procesador con 4 núcleos de procesamiento no están 100% paralelizados, en caso contrario de tener cada procesador de cada maquina dedicada a un hilo pues estos si estarán 100% paralelizados entre si, si nos vamos a un análisis mas extenso, también se añadiría físicamente el tiempo que llevaría el unir estos datos y computarlos para dar una sola respuesta.
 
 
