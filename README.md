@@ -22,11 +22,11 @@
 	2. Inicie los tres hilos con 'start()'.
 	3. Ejecute y revise la salida por pantalla. 
 
-	![](img/salidastart.png)
+	![](https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/salidastart.PNG)
 
 	5. Cambie el incio con 'start()' por 'run()'. Cómo cambia la salida?, por qué?.
 
-	![](img/salidarun.png)
+	![](https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/salidastart.PNG)
 
 cambia la salida porque al cambiar el inicio por 'run()' es una llamada a un método secuencial esto implica que no se inicia un hilo nuevo simplemente se llama un método en el hilo principal, al usar el inicio con 'start()' se inicia el método run en paralelo donde se crea un hilo "hijo".
 
@@ -77,29 +77,29 @@ A partir de lo anterior, implemente la siguiente secuencia de experimentos para 
 
 1. Un solo hilo.
 
-![](img/singlethread.png)
+![](https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/singlethread.PNG)
 
 3. Tantos hilos como núcleos de procesamiento (haga que el programa determine esto haciendo uso del [API Runtime](https://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html)).
 
-![](img/nucleosdisponibles.png)
+![](img/https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/nucleosdisponibles.png)
 
 4. Tantos hilos como el doble de núcleos de procesamiento.
 
-![](img/doblenucleos.png)
+![](img/https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/doblenucleos.png)
 
 5. 30 hilos.
 
-![](img/30hilos.png)
+![](img/https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/30hilos.png)
 
 6. 100 hilos.
 
-![](img/100hilos.png)
+![](img/https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/100hilos.png)
 
 Al iniciar el programa ejecute el monitor jVisualVM, y a medida que corran las pruebas, revise y anote el consumo de CPU y de memoria en cada caso. ![](img/jvisualvm.png)
 
 Con lo anterior, y con los tiempos de ejecución dados, haga una gráfica de tiempo de solución vs. número de hilos. Analice y plantee hipótesis con su compañero para las siguientes preguntas (puede tener en cuenta lo reportado por jVisualVM):
 
-![](img/capturagrafica.png)
+![](img/https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/capturagrafica.png)
 
 
 1. Según la [ley de Amdahls](https://www.pugetsystems.com/labs/articles/Estimating-CPU-Performance-using-Amdahls-Law-619/#WhatisAmdahlsLaw?):
