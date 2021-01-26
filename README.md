@@ -81,25 +81,25 @@ A partir de lo anterior, implemente la siguiente secuencia de experimentos para 
 
 3. Tantos hilos como núcleos de procesamiento (haga que el programa determine esto haciendo uso del [API Runtime](https://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html)).
 
-![](img/https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/nucleosdisponibles.png)
+![](https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/nucleosdisponibles.PNG)
 
 4. Tantos hilos como el doble de núcleos de procesamiento.
 
-![](img/https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/doblenucleos.png)
+![](https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/doblenucleos.PNG)
 
 5. 30 hilos.
 
-![](img/https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/30hilos.png)
+![](https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/30hilos.PNG)
 
 6. 100 hilos.
 
-![](img/https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/100hilos.png)
+![](https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/100hilos.PNG)
 
 Al iniciar el programa ejecute el monitor jVisualVM, y a medida que corran las pruebas, revise y anote el consumo de CPU y de memoria en cada caso. ![](img/jvisualvm.png)
 
 Con lo anterior, y con los tiempos de ejecución dados, haga una gráfica de tiempo de solución vs. número de hilos. Analice y plantee hipótesis con su compañero para las siguientes preguntas (puede tener en cuenta lo reportado por jVisualVM):
 
-![](img/https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/capturagrafica.png)
+![](https://github.com/jocajime/ARSW-LAB1-2021-1/blob/main/img/captura%20grafica.PNG)
 
 
 1. Según la [ley de Amdahls](https://www.pugetsystems.com/labs/articles/Estimating-CPU-Performance-using-Amdahls-Law-619/#WhatisAmdahlsLaw?):
